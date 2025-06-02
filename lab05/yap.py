@@ -6,20 +6,36 @@ words = {
     "adjective": ["small", "great", "fuzzy", "funny", "light"],
     "preposition": ["through", "over", "under", "beyond", "across"],
     "adverb": ["barely", "mostly", "easily", "already", "just"],
-    "color": ["pink", "blue", "mauve", "red", "transparent"]
+    "color": ["pink", "blue", "mauve", "red", "transparent"],
+    "name": ["eliza", "jenny", "beatrice", "robert", "aaron"],
+    "name's": ["eliza's", "jenny's", "beatrice's", "robert's", "aaron's"],
 }
 
-template = """
+templates = ["""
     Yesterday the color noun
-    verb preposition the coach’s
+    verb preposition coach name
     adjective color noun that was
     adverb adjective before
+    """,
+    
     """
+    Tomorrow the color noun
+    verb preposition coach name's
+    adjective color noun that was
+    adverb adjective after
+    """, 
+
+    """Today the color noun
+    verb preposition coach name's
+    adjective color noun that was
+    adverb adjective now
+    """, 
+]
 
 
 def random_sentence():
     sentence = []
-    for token in template.split():
+    for token in templates[random.randint(0,2)].split():
         if token in words:
             sentence.append(random.choice(words[token]))
         else:
@@ -27,5 +43,9 @@ def random_sentence():
     return " ".join(sentence) + "."
 
 
-for _ in range(5):
-    print(random_sentence())
+def random_paragraph():
+    for _ in range(random.randint(3, 9)):
+        print(random_sentence(), end=" ")
+
+    
+random_paragraph()

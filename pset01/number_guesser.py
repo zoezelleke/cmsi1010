@@ -11,7 +11,33 @@
 
 # Things to do:
 
-# Generate a random number between 1 and 1000.
+import random
+
+def guessing_game():
+    print("Guess number between 1 and 100")
+    print("type 'bye' or 'exit' to quit the program")
+
+while True: 
+    number = random.randint(1,101)
+
+    while True:
+        guess = input("enter number:").strip()
+
+        if guess is not a digit():
+            print("Please enter a vali number")
+
+        guess_number = int(guess)
+
+        if guess_number < number: 
+            print("Too low!")
+        
+        elif guess_number > number
+             print("Too high!")
+
+        if correct guess_number
+            print("Congratulations! You guessed the number!")
+
+    
 
 # Ask the user to guess the number. In your prompt, let the user know they
 # can type 'bye' or 'exit' to quit the program.
