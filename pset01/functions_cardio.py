@@ -17,7 +17,7 @@ def median_of_three(a, b, c):
     """
     Returns the median of three numbers a, b, and c.
     """
-    # replace the pass statement with your code
+
     print('unsorted', [a,b,c])
     sorted_nums = sorted([a,b,c])
     print('sorted', sorted_nums)
@@ -33,7 +33,7 @@ def is_palindrome(s):
     implement it as a simple check to see if s is equal to its
     reversal.
     """
-    # replace the pass statement with your code
+   
     reversed = s[::-1]
     return s == reversed
 
@@ -47,7 +47,7 @@ def factorial(n):
     positive integers less than or equal to n. Please implement this
     function with a for loop.
     """
-    # replace the pass statement with your code
+   
     answer = 1
     for i in range (2, n+1):
         answer*= i
@@ -61,8 +61,12 @@ def count_of_latin_vowels(s):
     The vowels are 'a', 'e', 'i', 'o', and 'u'. You can implement this
     function using a for loop to iterate through the string.
     """
-    # replace the pass statement with your code
-    vowels = 'aeiou'
+    count=0
+    for c in sameif c in "aeiouAEIOU"
+        count = +1
+    return count
+
+    
 
 
 def longest_string(strings):
@@ -72,8 +76,12 @@ def longest_string(strings):
     If there are multiple strings with the same maximum length, return
     the first one encountered.
     """
-    # replace the pass statement with your code
-    pass
+
+    longest_so_far= strings[0]
+    for s in strings[1:]:
+           if len(s) > len(longest_so_far):
+               longest_so_far= s
+    return longest_so_far
 
 
 def word_frequencies(s):
@@ -85,7 +93,10 @@ def word_frequencies(s):
     A word is defined as a sequence of characters separated by spaces.
     You can implement this function using the split method.
     """
-    # replace the pass statement with your code
+    words = s.split()
+    count = {}
+    forword in words: 
+       if word in count: 
     pass
 
 

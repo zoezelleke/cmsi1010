@@ -13,7 +13,7 @@
 
 import random
 
-def guessing_game():
+def number_guesser():
     print("Guess number between 1 and 100")
     print("type 'bye' or 'exit' to quit the program")
 
