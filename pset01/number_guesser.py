@@ -1,60 +1,42 @@
-# ----------------------------------------------------------------------
-# This is the file number_guesser.py
-
-# The intent is to give you practice writing a complete, interactive
-# Python program.
-
-# Remove the comments in this file when you have completed your program.
-# You can, and should, include your own comments, but please remove the
-# comments that are here now.
-# ----------------------------------------------------------------------
-
-# Things to do:
-
 import random
 
 def number_guesser():
-    print("Guess number between 1 and 100")
-    print("type 'bye' or 'exit' to quit the program")
-
-while True: 
-    number = random.randint(1,101)
+    print("Welcome to number guesser, friend! Guess a number between 1 and 1,000.")
+    print("Type 'bye' or 'exit' to quit the game.")
 
     while True:
-        guess = input("enter number:").strip()
+        number = random.randint(1, 1000)
+        attempts = 0
 
-        if guess is not a digit():
-            print("Please enter a vali number")
+        while True:
+            guess = input("Your guess: ").strip().lower()
 
-        guess_number = int(guess)
+            if guess in ['bye', 'exit']:
+                print("Thanks for playing! Goodbye.")
+                return
 
-        if guess_number < number: 
-            print("Too low!")
-        
-        elif guess_number > number
-             print("Too high!")
+            if not guess.isdigit():
+                print("Please enter a valid number.")
+                continue
 
-        if correct guess_number
-            print("Congratulations! You guessed the number!")
+            guess = int(guess)
+            attempts += 1
+
+            if guess < number:
+                print("Too low!")
+            elif guess > number:
+                print("Too high!")
+            else:
+                print(f"Congratulations! You guessed the number {number} in {attempts} attempts.")
+                break
+
+
+number_guesser()
+
+
+
+
+
 
     
 
-# Ask the user to guess the number. In your prompt, let the user know they
-# can type 'bye' or 'exit' to quit the program.
-#
-# If their guess is not made up entirely of digits, print "Please enter a valid
-# number" and ask them to guess again.
-#
-# If the guess is too high, print "Too high!" and continue asking.
-#
-# If the guess is too low, print "Too low!" and continue asking.
-#
-# If the guess is correct, print "Congratulations! You guessed the number!" along
-# with the number of attempts it took to guess the number. Start over with a new
-# random number. Make sure to zero out the number of attempts.
-
-# Please note: There are likely to be a number of Python guessing games online,
-# and most GenAI systems can probably write this for you. Don’t rely on them,
-# as they rob you of a chance to practice your Python skills and they might not
-# even be correct. Perhaps, worse, they might not follow the instructions
-# exactly as given.

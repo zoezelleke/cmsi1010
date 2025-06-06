@@ -1,11 +1,3 @@
-# ----------------------------------------------------------------------
-# This is the file functions_cardio.py
-
-# The intent is to give you practice writing functions.
-
-# Complete the functions below.
-# Remove this comment when you have completed the functions.
-# ----------------------------------------------------------------------
 
 def is_odd(n):
     return n % 2 != 0
@@ -17,11 +9,7 @@ def median_of_three(a, b, c):
     """
     Returns the median of three numbers a, b, and c.
     """
-
-    print('unsorted', [a,b,c])
-    sorted_nums = sorted([a,b,c])
-    print('sorted', sorted_nums)
-    return sorted_nums[1]
+    return sorted([a,b,c])[1]
 
 
 
@@ -62,8 +50,9 @@ def count_of_latin_vowels(s):
     function using a for loop to iterate through the string.
     """
     count=0
-    for c in sameif c in "aeiouAEIOU"
-        count = +1
+    for c in s:
+          if c in "aeiouAEIOU":
+             count +=1
     return count
 
     
@@ -95,9 +84,14 @@ def word_frequencies(s):
     """
     words = s.split()
     count = {}
-    forword in words: 
-       if word in count: 
-    pass
+    for word in words:
+        if word in count:
+            count[word] += 1
+        else: 
+            count[word] = 1
+    return count
+              
+
 
 
 assert is_odd(3) == True
