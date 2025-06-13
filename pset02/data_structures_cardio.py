@@ -1,25 +1,3 @@
-# ----------------------------------------------------------------------
-# This is the file data_structures_cardio.py
-#
-# The intent is to give you practice with tuples, lists, sets, and
-# dictionaries.
-#
-# Complete the functions below.
-#
-# Each function has a docstring that describes what it should do, but
-# please see the unit tests at the bottom of the file for more
-# specific examples of what each function should return. To run
-# the tests, you can use the command
-#
-#     python3 -m unittest data_structures_cardio.py
-#
-# (or python depending on your system).
-#
-# Remove this comment, and all of the "replace the pass statement..."
-# comments, prior to submission. You can, and should, add your own
-# comments, but please remove all the comments that are here now.
-# ----------------------------------------------------------------------
-
 import unittest
 
 
@@ -59,11 +37,11 @@ def middle_element_of_list(a):
     TypeError.
     """
     if not isinstance(a, list):
-        raise IndexError("Input must be list")
-    if len(a) == 0: 
-        raise IndexError("List must have at least one element")
-    return a[len(a) // 2 - 1]
-
+        raise TypeError("Input must be a list")
+    if len(a) == 0:
+        raise IndexError("List is empty")
+    middle_index = (len(a) - 1) // 2
+    return a[middle_index]
 
 
 def unique_elements(a):
@@ -76,7 +54,6 @@ def unique_elements(a):
     return set(a)
 
 
-
 def contains_duplicates(a):
     """
     Returns True if the input list a contains any duplicate elements,
@@ -85,9 +62,6 @@ def contains_duplicates(a):
     if not isinstance(a, list):
         raise TypeError("Must be a list)")
     return len(a) != len(set(a))
-
-
-    
 
 
 def is_superset(a, b):
@@ -100,7 +74,6 @@ def is_superset(a, b):
     return a.issuperset(b)
 
 
-
 def is_subset(a, b):
     """
     Returns True if set a is a subset of set b, and False otherwise.
@@ -109,7 +82,6 @@ def is_subset(a, b):
     if not isinstance(a, set) or not isinstance(b, set):
         raise TypeError("a and b must be a set")
     return a.issubset(b)
-
 
 
 def is_disjoint(a, b):
@@ -123,8 +95,6 @@ def is_disjoint(a, b):
     return a.isdisjoint(b)
 
 
-
-
 def most_frequent_value_or_values(d):
     """
     Returns the value or values that appear most frequently in the
@@ -134,15 +104,26 @@ def most_frequent_value_or_values(d):
     """
     if not isinstance(d, dict):
         raise TypeError("Input must be a dictionary")
-    if d != set():
-        frequency = {}
-        for value in d.values():
-            if value in frequency:
-                frewu
-    
-
-
-
+    if len(d) == 0:
+        return None
+    frequency = {}
+    for value in d.values():
+        if value in frequency:
+            frequency[value] += 1
+        else:
+            frequency[value] = 1
+    # Here frequency might be something like {'a': 1, 'b': 2, 'c': 1}
+    max_freq = max(frequency.values())
+    # max frequency is 2 in this case
+    #frequency.items # will return a list of tuples like [('a', 1), ('b', 2), ('c', 1)]
+    results = set()
+    for value, count in frequency.items():
+        if count == max_freq:
+            # if the value is equal to the max frequency, we return it
+            # as a set
+            results.add(value)
+    return results
+            
 
 def key_is_in_both_dictionaries(d1, d2, key):
     """
@@ -153,9 +134,6 @@ def key_is_in_both_dictionaries(d1, d2, key):
     if not isinstance(d1, dict) or not isinstance(d2, dict):
         raise TypeError("d1 and d2 must be dictionaries")
     return True if key in d1 and key in d2 else False
-
-
-
 
 
 def word_frequencies(s):
@@ -179,7 +157,6 @@ def word_frequencies(s):
         else: 
             count[word] = 1
     return count
-    
 
 
 class TestDataStructuresCardio(unittest.TestCase):

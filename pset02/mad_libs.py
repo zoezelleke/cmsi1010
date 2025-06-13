@@ -1,97 +1,84 @@
-# ----------------------------------------------------------------------
-# This is the file mad_libs.py
-
-# The intent is to give you practice writing a complete, interactive
-# Python program using a lot of Python data types, especially lists,
-# sets, and dictionaries.
-
-# Remove ALL of the existing comments in this file prior to submission.
-# You can, and should, add your own comments, but please remove all the
-# comments that are here now.
-# ----------------------------------------------------------------------
-
-# Things to do:
-
-# Define a bunch of templates in which some of the words begin with a colon (:).
-# The words that begin with a colon are the words that you will ask the user
-# to fill in. An example of a template is:
-#
-#     "The :color :animal :action over the :adjective :plant."
-#
-# You should define a list of at least 10 templates. Be creative!
-
-# Your app should begin by selecting a random template. Then, for each word
-# that begins with a colon in the template, prompt the user for a word
-# that fits the description. Make sure that their input is between 1 and 30
-# characters long, to prevent them from making too much of a mess of things.
-
-# After the user has filled in all of the words, print the completed
-# template with the user's words filled in. Then after a blank line, print
-# a line crediting the author of the template. Then, print a couple of blank
-# lines and ask them if they want to play again. If they say "yes" (or "sí"
-# or "oui") or any acceptable version of an affirmative answer, start over
-# with a new random template. Otherwise, say "no", print "Thanks for playing!"
-# and exit the program.
-
-# Here are some constraints:
-
-#   1. The templates should be a list of dictionaries, in which each entry
-#      has a "text" fields and an "author" field. The "text" field should
-#      contain the template string, and the "author" field should contain
-#      the name of the person who wrote the template.
-#
-#   2. The possible "yes" answers should be stored in a set.
-
 import random
+
 templates = [
     {
-        "text": "The :color :flower :verb on the :adjective :object.",
+        "text": "The :color :flower looks :adjective outside.",
         "author": "Lucy Dacus"
     },
     {
-        "text": "The :adjective :band is :verb at the :place.",
+        "text": ":singer is :verb(ing) at the :place on :day",
         "author": "Pheobe Bridgers"
     },
     {
-        "text": "Even the :color :animal loves to :verb with a :adjective :object.",
-        "author": "Julian Baker"
+        "text": "Even the :color :animal loves a :adjective :noun",
+        "author": "Julien Baker"
     },
     {
-        "text": "The :noun goes to the :adjective :person.",
+        "text": ":person goes to the :adjective :place with friends.",
         "author": "Lorde"
     },
     {
-        "text": "The :adjective :person :verb over a :color :object.",
+        "text": "The :adjective :person :verb(ed) over a :color :object",
         "author": "Dora Jar"
     },
     {
-        "text": ":verb like a :adjective :animal trying to :verb at the :place.",
+        "text": ":verb like a :adjective :animal in the :place",
         "author": "Mitski"
     },
     {
-        "text": ":noun and :noun are best friends in the :place.",
-        "author": "Grace"
+        "text": ":person and :person are :adjective best friends at the :event",
+        "author": "Gracie Abrams"
     },
     {
-        "text": "The :person :verb under the :adjective sky:",
+        "text": ":person :verb(s) under the :adjective sky.",
         "author": "Imogen Heap"
     },
     {
-        "text": ":On :day :person is :verb at the :adjective :place.",
+        "text": "On :day :person is :verb(ing) in :adjective :city",
         "author": "SZA"
     },
     {
-        "text": ":pronoun :verb for her :person to :verb :pronoun to the :place.", 
+        "text": ":pronoun waits for :person to :verb at the :event", 
         "author": "Ariana Grande"
     
 
     }
 ]
 
-yes_answers = {"yes", "oui", "si" "yeah"}
 
-current_template = random.choice(templates)
-word = {}
-for word in current_template["text"].split():
-    if word 
+yes_answers = {
+    "yes", "si", "oui", "sure", "yeah", "yep"
+}
 
+
+def get_user_input(prompt):
+    while True:
+        user_input = input(prompt).strip()
+        if 1 <= len(user_input) <= 30:
+            return user_input
+        else:
+            print("Input must be between 1 and 30 characters long. Please try again.")
+
+
+def fill_template(template):
+    filled_template = template["text"]
+    placeholders = [word for word in filled_template.split() if word.startswith(':')]
+    # this means give me every word from the filled template and starts with a colon
+    
+    for placeholder in placeholders:
+        description = placeholder[1:]  # Remove the colon
+        user_input = get_user_input(f"Please enter a {description}: ")
+        filled_template = filled_template.replace(placeholder, user_input, 1)
+    
+    print("\n" + filled_template)
+    print(f"\nAuthor: {template['author']}\n")
+
+
+while True:
+    template = random.choice(templates)
+    fill_template(template)
+    
+    play_again = input("Do you want to play again? (yes/no): ").strip().lower()
+    if play_again not in yes_answers:
+        print("Thanks for playing!")
+        break
